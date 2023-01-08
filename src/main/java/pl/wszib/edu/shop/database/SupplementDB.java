@@ -39,8 +39,8 @@ public class SupplementDB {
     public List<Supplement> getSupplements() {
         return supplements;
     }
-    public void buySupplement(String code, int amount) {
-        boolean productFound = false;
+    public boolean buySupplement(String code, int amount) {
+        /*boolean productFound = false;
         for(Supplement supplement : this.supplements) {
             if(supplement.getProductCode().equals(code)){
                 if(supplement.getInStock() >= amount) {
@@ -53,7 +53,28 @@ public class SupplementDB {
             }
         }
         if(!productFound) System.out.println("Invalid product code, request denied");
+         */
+
+        return this.supplements.stream().filter(p -> p.getProductCode() == code)
+                .filter(p -> p.getInStock() >= amount)
+                .map(p -> {
+                    p.setInStock(p.getInStock() - amount);
+                    System.out.println("Product bought successfully");
+                    return true;
+                })
+                .findFirst()
+                .orElse(false);
     }
+    public boolean addQuantity(String code, int amount) {
+        return this.supplements.stream().filter(p -> p.getProductCode().equals(code))
+                .map(p -> {
+                    p.setInStock(p.getInStock() + amount);
+                    return true;
+                })
+                .findFirst()
+                .orElse(false);
+    }
+
     public void addSupplement(Supplement supplement) {
         /*
         Supplement[] newSupplements = new Supplement[this.supplements.length +1];

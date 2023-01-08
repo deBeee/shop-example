@@ -18,12 +18,17 @@ public class UserDB {
     }
 
     public User findByLogin(String login) {
+        /*
         for (User user : this.users) {
             if (user.getLogin().equals(login)) {
                 return user;
             }
         }
         return null;
+        */
+        return  this.users.stream().filter(p -> p.getLogin().equals(login))
+                .findFirst().orElse(null);
+
     }
     public void addUser(User user) {
         /*
@@ -36,7 +41,8 @@ public class UserDB {
         */
         this.users.add(user);
     }
-    public void changeUserRole(String login) {
+    public boolean changeUserRole(String login) {
+        /*
         boolean userFound = false;
         for(User user : this.users) {
             if(user.getLogin().equals(login)){
@@ -49,6 +55,16 @@ public class UserDB {
             }
         }
         if(!userFound) System.out.println("Invalid user login, operation denied!");
+        */
+        return this.users.stream()
+                .filter(user -> user.getLogin().equals(login))
+                .filter(user -> user.getRole().equals(User.Role.USER))
+                .map(user -> {
+                    user.setRole(User.Role.ADMIN);
+                    return true;
+                })
+                .findFirst()
+                .orElse(false);
     }
     public static UserDB getInstance() {
         return instance;

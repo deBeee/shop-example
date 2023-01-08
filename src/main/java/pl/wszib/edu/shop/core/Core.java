@@ -45,22 +45,35 @@ public class Core {
                     this.gui.listSupplements();
                     break;
                 case "2":
-                    this.supplementDB.buySupplement(this.gui.readCode(), this.gui.readAmount());
+                    this.gui.showResult(supplementDB.buySupplement(this.gui.readProductCode(), this.gui.readQuantity()));
                     break;
                 case "3":
                     isRunning = false;
                     break;
                 case "4":
+                    this.authenticator.logout();
+                    isRunning = false;
+                    System.out.println("Logged out!");
+                    start();
+                    break;
+                case "5":
                     if(this.authenticator.getLoggedUser() != null &&
                             this.authenticator.getLoggedUser().getRole() == User.Role.ADMIN) {
                         this.supplementDB.addSupplement(this.gui.readNewSupplementData());
                         break;
                     }
-                case "5":
+                case "6":
                     if(this.authenticator.getLoggedUser() != null &&
                             this.authenticator.getLoggedUser().getRole() == User.Role.ADMIN) {
                         this.gui.listUsers();
-                        this.userDB.changeUserRole(this.gui.readUser());
+                        this.gui.showChangeResult(this.userDB.changeUserRole(this.gui.readUser()));
+                        break;
+                    }
+                case "7":
+                    if(this.authenticator.getLoggedUser() != null &&
+                            this.authenticator.getLoggedUser().getRole() == User.Role.ADMIN) {
+                        this.gui.listSupplements();
+                        this.gui.showAddResult(this.supplementDB.addQuantity(this.gui.readProductCode(),this.gui.readQuantity()));
                         break;
                     }
                 default:

@@ -20,11 +20,11 @@ public class GUI {
     public GUI() {
     }
 
-    public int readAmount() {
+    public int readQuantity() {
         System.out.println("Amount: ");
         return Integer.parseInt(this.scanner.nextLine());
     }
-    public String readCode() {
+    public String readProductCode() {
         System.out.println("Code: ");
         return this.scanner.nextLine();
     }
@@ -100,10 +100,12 @@ public class GUI {
         System.out.println("1. List supplements");
         System.out.println("2. Buy supplements");
         System.out.println("3. Exit");
+        System.out.println("4. Logout");
         if (this.authenticator.getLoggedUser() != null &&
                 this.authenticator.getLoggedUser().getRole() == User.Role.ADMIN) {
-            System.out.println("4. Add supplement");
-            System.out.println("5. Change user's role");
+            System.out.println("5. Add supplement");
+            System.out.println("6. Change user's role");
+            System.out.println("7. Add supplement quantity");
         }
         return scanner.nextLine();
     }
@@ -112,6 +114,18 @@ public class GUI {
         System.out.println("2. Register");
         System.out.println("3. Exit");
         return scanner.nextLine();
+    }
+    public void showChangeResult(boolean result) {
+        System.out.println(result ? "Role changed successfully" :
+                "Invalid login, request denied!");
+    }
+    public void showAddResult (boolean result){
+        System.out.println(result ? "Quantity added successfully" :
+                "Invalid product code or quantity given, request denied!");
+    }
+    public void showResult (boolean result){
+        System.out.println(result ? "Product bought successfully" :
+                "Invalid product code given/There are too few pieces of demanded product, request denied!");
     }
     public User register() {
         System.out.println("Login: ");

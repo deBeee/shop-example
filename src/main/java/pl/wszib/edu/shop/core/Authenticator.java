@@ -21,6 +21,9 @@ public class Authenticator {
             this.loggedUser = userFromDB;
         }
     }
+    public User logout() {
+        return loggedUser = null;
+    }
     public User getLoggedUser() {
         return loggedUser;
     }
