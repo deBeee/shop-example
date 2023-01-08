@@ -3,7 +3,7 @@ package pl.wszib.edu.shop.model;
 import java.time.LocalDate;
 
 
-public class Creatine extends Supplement{
+public final class Creatine extends Supplement{
 
     private Type type;
     private Flavour flavour;

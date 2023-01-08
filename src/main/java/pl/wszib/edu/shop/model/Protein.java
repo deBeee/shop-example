@@ -2,7 +2,7 @@ package pl.wszib.edu.shop.model;
 
 import java.time.LocalDate;
 
-public class Protein extends Supplement{
+public final class Protein extends Supplement{
     private Type type;
     private Flavour flavour;
 

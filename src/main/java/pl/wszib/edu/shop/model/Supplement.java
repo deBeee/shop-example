@@ -2,7 +2,7 @@ package pl.wszib.edu.shop.model;
 
 import java.time.LocalDate;
 
-public class Supplement {
+public sealed class Supplement permits Creatine, Preworkout, Protein{
     private String brand;
     private LocalDate expireDate;
     private double price;

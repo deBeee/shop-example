@@ -2,7 +2,7 @@ package pl.wszib.edu.shop.model;
 
 import java.time.LocalDate;
 
-public class Preworkout extends Supplement {
+public final class Preworkout extends Supplement {
     private Type type;
     private Flavour flavour;
 
