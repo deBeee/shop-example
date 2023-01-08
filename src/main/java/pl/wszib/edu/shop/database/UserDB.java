@@ -2,14 +2,18 @@ package pl.wszib.edu.shop.database;
 
 import pl.wszib.edu.shop.model.User;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class UserDB {
-    private User[] users = new User[2];
+    private List<User> users = new ArrayList<>();
     private static final UserDB instance = new UserDB();
     private UserDB(){
-        this.users[0] = new User("admin","eb0468abcd9f88e9844fd140fbb6acff", User.Role.ADMIN);
-        this.users[1] = new User("dominik", "200d0c3651cf442b1cbde01825eb53be", User.Role.USER);
+        users.add(new User("admin","eb0468abcd9f88e9844fd140fbb6acff", User.Role.ADMIN));
+        users.add(new User("dominik", "200d0c3651cf442b1cbde01825eb53be", User.Role.USER));
     }
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
@@ -22,12 +26,15 @@ public class UserDB {
         return null;
     }
     public void addUser(User user) {
+        /*
         User[] newUsers = new User[this.users.length +1];
         for(int i = 0; i < this.users.length; i++) {
             newUsers[i] = this.users[i];
         }
         newUsers[newUsers.length - 1] = user;
         this.users = newUsers;
+        */
+        this.users.add(user);
     }
     public void changeUserRole(String login) {
         boolean userFound = false;
