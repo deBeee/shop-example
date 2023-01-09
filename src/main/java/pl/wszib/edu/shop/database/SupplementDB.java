@@ -55,11 +55,10 @@ public class SupplementDB {
         if(!productFound) System.out.println("Invalid product code, request denied");
          */
 
-        return this.supplements.stream().filter(p -> p.getProductCode() == code)
+        return this.supplements.stream().filter(p -> p.getProductCode().equals(code))
                 .filter(p -> p.getInStock() >= amount)
                 .map(p -> {
                     p.setInStock(p.getInStock() - amount);
-                    System.out.println("Product bought successfully");
                     return true;
                 })
                 .findFirst()
